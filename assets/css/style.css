@@ -2,6 +2,8 @@
 
 html{
     overflow: overlay;
+    /* overflow-x: auto; */
+    scroll-behavior: smooth;
 }
 
 *::-webkit-scrollbar {
@@ -61,7 +63,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1A1B16, #272822,#33332B,#717462);
+    background: linear-gradient(135deg, #121415, #1a1e20,#32383b,#525c61);
     background-size: 400% 400%;
     background-position: 100%;
     flex-direction: column;
@@ -177,27 +179,30 @@ main {
     position: fixed;
     top: 0px;
     right: 0px;
-    height: 50px;
+    height: 60px;
     width: 50px;
-    background-color: #717462;
-    box-shadow: 0px 0px 0px 0px #717462;
+    /* background-color: #32383b; */
+    background: linear-gradient(225deg, #2d3235, #363c3f);
+    border-radius: 5px;
+    /* box-shadow: 0px 0px 0px 0px #32383b; */
+;
     z-index: -1;
-    transition: .8s ease-out, box-shadow .8s, z-index 0s .7s;
+    transition: .2s ease-in, box-shadow .2s, z-index 0s .2s;
 }
 
 .menu-items {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    top: 60px;
+    right: 60px;
+    /* width: 100%; */
+    /* height: 100vh; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    /* align-items: center; */
     z-index: 2;
     visibility: hidden;
     opacity: 0;
-    transition: .2s ease-in-out;
+    transition: .1s ease-in-out;
 }
 
 .menu-items ul {
@@ -211,9 +216,10 @@ main {
 .menu-items ul li a{
     text-decoration: none;
     margin: 10px 0;
-    color: #272822;
+    /* color: #525c61; */
+    color: antiquewhite;
     text-transform: uppercase;
-    font-size: 40px;
+    font-size: 30px;
     user-select: none;
 }
 
@@ -228,7 +234,7 @@ main {
 }
 
 #toggle:checked + .checkbox .trace {
-    background-color: #272822;
+    background-color: #1a1e20;
     transition: top .3s, transform .3s .3s, background-color .2s .2s;
 }
 
@@ -246,15 +252,16 @@ main {
 }
 
 #toggle:checked ~ .menu {
-    box-shadow: 0px 0px 0px 100vmax #717462;
+    transform: scale(10);
+    box-shadow: 0px 0px 2px #121415;
     z-index: 1;
-    transition: .8s ease-in-out;
+    transition: .2s ease-in-out, box-shadow .2s;
 }
 
 #toggle:checked ~ .menu-items {
     visibility: visible;
     opacity: 1;
-    transition: .2s ease-in .8s;
+    transition: .1s ease-in .2s;
 }
 
 /* MAIN */
@@ -264,7 +271,7 @@ main {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    background-color: #1A1B16;
+    background-color: #121415;
     justify-content: space-evenly;
     align-items: center;
     padding: 3rem 0;
@@ -281,7 +288,7 @@ section {
 
 #projetos {
     margin-top: 3rem;
-    background-color: #33332B;
+    background-color: #232628;
 }
 
 /* CARDS */
@@ -291,7 +298,12 @@ section {
     justify-content: space-evenly;
     align-items: center;
     margin: 3rem 0 0 0;
+    /* perspective: 800px;
+    perspective-origin: 70% 80%;
+    transform-style: preserve-3d; */
 }
+
+/* Need to Fix perspective for inverted cards */
 
 .card-container > p {
     width: 60%;
@@ -311,22 +323,39 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* contain: content; */
     background-image: url(../imgs/belem-flight.png);
     background-repeat: no-repeat;
     background-size: cover;
     filter: grayscale(.8);
+    /* transform: rotate3d(0,1,0, -65deg);
+    transform-origin: right;  */
     box-shadow: 0 0 5px black;
     cursor: pointer;
     margin: 0 0 0 3rem;
+    /* perspective: 800px;
+    perspective-origin: center;
+    transform-style: preserve-3d; */
     transition: .3s ease-in-out;
 }
 
+/* .card > img {
+    position: absolute;
+    filter: grayscale(.8);
+    transform: scale(1.25) translateX(-40px) rotate3d(0,1,0, -45deg);
+    transform-origin: right; 
+} */
+
 .card-left {
+    /* transform-origin: left;
+    transform: rotate3d(0,.5,0, 65deg); */
     margin: 0 3rem 0 0;
 }
 
 .card:hover {
     filter: grayscale(.2);
+    /* transform: scale(.75) translate3d(-65px,0,0px) rotate3d(0,1,0,0deg);
+    transition: .4s ease, transform .5s; */
 }
 
 .card-wrapper {
@@ -347,7 +376,8 @@ section {
     position: absolute;
     width: 40px;
     height: 30px;
-    border: 1px solid antiquewhite;
+    border: 3px solid antiquewhite;
+    box-shadow: 0 0 5px black;
     transition: .3s ease-in-out;
 }
 
@@ -365,12 +395,16 @@ section {
 }
 
 .card:hover .card-wrapper::before {
-    opacity: 1;
-    height: 60%;
-    width: 60%;
+    opacity: 0;
+    height: 80%;
+    width: 80%;
 }
 
+/* .card:hover .card-wrapper h2 {
+    text-shadow: 0 0 10px black;
+} */
 .card:hover .card-wrapper p {
+    font-weight: 500;
     visibility: visible;
     opacity: 1;
     font-size: 20px;
